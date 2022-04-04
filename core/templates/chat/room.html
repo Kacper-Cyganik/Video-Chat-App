@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %} Room {% endblock title%}
 
 {% block content %}
@@ -10,14 +10,14 @@
     </div>
 
     <div>
-        <id id="video-streams">
-
-            <div class="video-container" id="user-container-1">
-                <div class="username-wrapper"><span class="user-name">My name</span></div>
-                <div class="video-player" id="user-1"></div>
-            </div>
-
+        <id id="video-streams">       
+            
         </id>
     </div>
 </main>
+<script type="text/javascript" src="{% static 'assets/AgoraRTC_N-4.11.0.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/streams.js' %}">
+
+</script>
+
 {% endblock content %}
