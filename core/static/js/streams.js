@@ -1,7 +1,7 @@
 const APP_ID = "2c2a7041ddad44428b055228f2e62813";
-const CHANNEL = "django-video-chat";
-const TOKEN = "0062c2a7041ddad44428b055228f2e62813IAA7H7EReczqj2LPoKtOUT4PG+lhwbHJSR6ZPO8qGwS0nnVrr94AAAAAEAB1KdkmQ5xiYgEAAQBCnGJi";
-let UID;
+const CHANNEL = sessionStorage.getItem('room');
+const TOKEN = sessionStorage.getItem('token')
+let UID = sessionStorage.getItem('UID');
 
 const client = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" });
 
@@ -9,10 +9,16 @@ let localTracks = [];
 let remoteUsers = {};
 
 let joinAndDisplayLocalStream = async () => {
+  document.getElementById('room-name').innerText = CHANNEL
   client.on("user-published", handleUserJoined);
   client.on("user-left", handleUserLeft);
 
-  UID = await client.join(APP_ID, CHANNEL, TOKEN, null);
+  try{
+    UID = await client.join(APP_ID, CHANNEL, TOKEN, UID);
+  }catch(error){
+    console.error(error)
+    //window.open('/', '_self')
+  }
   localTracks = await AgoraRTC.createMicrophoneAndCameraTracks();
 
   let player = `<div class="video-container" id="user-container-${UID}">
