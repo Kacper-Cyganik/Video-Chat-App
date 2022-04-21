@@ -1,7 +1,6 @@
 const APP_ID = "2c2a7041ddad44428b055228f2e62813";
 const CHANNEL = "django-video-chat";
-const TOKEN =
-  "0062c2a7041ddad44428b055228f2e62813IAA7H7EReczqj2LPoKtOUT4PG+lhwbHJSR6ZPO8qGwS0nnVrr94AAAAAEAB1KdkmQ5xiYgEAAQBCnGJi";
+const TOKEN = "0062c2a7041ddad44428b055228f2e62813IAA7H7EReczqj2LPoKtOUT4PG+lhwbHJSR6ZPO8qGwS0nnVrr94AAAAAEAB1KdkmQ5xiYgEAAQBCnGJi";
 let UID;
 
 const client = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" });
