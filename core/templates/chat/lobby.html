@@ -13,10 +13,10 @@
     </div>
     <form id="form">
       <div class="form-field">
-        <input type="text" name="room" placeholder="Enter a room name..." />
+        <input type="text" name="room" placeholder="Enter room name..." />
       </div>
       <div class="form-field">
-        <input type="text" name="username" placeholder="Enter your name..." />
+        <input type="text" name="username" placeholder="Enter room name..." />
       </div>
       <div class="form-field">
         <input type="submit" value="Join Stream" />
@@ -31,7 +31,10 @@
   
   let handleSubmit = async (e) => {
     e.preventDefault();
+
     let room = e.target.room.value.toUpperCase();
+    let name = e.target.username.value
+
     let response = await fetch(`/get_token/?channel=${room}`);
     let data = await response.json();
 
@@ -41,6 +44,7 @@
     sessionStorage.setItem("UID", UID);
     sessionStorage.setItem("token", token);
     sessionStorage.setItem("room", room);
+    sessionStorage.setItem("name", name);
     window.open("/room/", "_self");
   };
 

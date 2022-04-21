@@ -2,7 +2,7 @@ const APP_ID = "2c2a7041ddad44428b055228f2e62813";
 const CHANNEL = sessionStorage.getItem('room');
 const TOKEN = sessionStorage.getItem('token')
 let UID = sessionStorage.getItem('UID');
-
+let NAME = sessionStorage.getItem('name')
 const client = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" });
 
 let localTracks = [];
