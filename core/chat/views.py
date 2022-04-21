@@ -2,9 +2,14 @@ from random import random
 from django.shortcuts import render
 from django.http import JsonResponse
 from agora_token_builder import RtcTokenBuilder
+from .models import RoomMember
 from django.conf import settings
 import random
 import time
+import json
+
+### CHANGE THAT !! send csrf_token 
+from django.views.decorators.csrf import csrf_exempt
 
 def get_token(request):
     #Build token with uid
@@ -25,3 +30,27 @@ def lobby(request):
 
 def room(request):
     return render(request, 'chat/room.html', {})
+
+@csrf_exempt
+def create_member(request):
+    data = json.loads(request.body)
+
+    member, created = RoomMember.objects.get_or_create(name=data['name'], uid=data['UID'], room_name=data['room_name'])
+    return JsonResponse({'name':data['name']}, safe=False)
+
+def get_member(request):
+    uid = request.GET.get('UID')
+    room = request.GET.get('room_name')
+
+    member = RoomMember.objects.get(uid=uid, room_name=room)
+
+    name = member.name
+    return JsonResponse({'name':member.name}, safe=False)
+
+@csrf_exempt
+def delete_member(request):
+    name = request.GET.get('name')
+    uid = request.GET.get('UID')
+    member = RoomMember.objects.get(uid=uid, name=name)
+    member.delete()
+    return JsonResponse('Member was deleted', safe=False)
