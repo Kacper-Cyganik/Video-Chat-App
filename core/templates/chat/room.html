@@ -1,23 +1,34 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block title %} Room {% endblock title%}
+{% extends 'base.html' %} 
+{% load static %} 
+{% block title %} Room {% endblock title%} 
 
 {% block content %}
 
 <main>
-    <div id="room-name-wrapper">
-        <p>Room Name: <span id="room-name"></span></p>
-    </div>
+  <div id="room-name-wrapper">
+    <p>Room Name: <span id="room-name"></span></p>
+  </div>
 
-    <div>
-        <div id="video-streams">       
-             
-        </div>
-    </div>
+  <div id="video-streams">
+
+  </div>
+
+  <div id="controls-wrapper">
+      <div class="icon-wrapper">
+          <img class="control-icon" id="mic-btn" src="{% static 'images/microphone.svg' %}">
+      </div>
+      <div class="icon-wrapper">
+          <img class="control-icon" id="camera-btn" src="{% static 'images/video.svg' %}">
+      </div>
+      <div class="icon-wrapper">
+          <img class="control-icon" id="leave-btn" src="{% static 'images/leave.svg' %}">
+      </div>
+  </div>
 </main>
-<script type="text/javascript" src="{% static 'assets/AgoraRTC_N-4.11.0.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/streams.js' %}">
-
-</script>
+<script
+  type="text/javascript"
+  src="{% static 'assets/AgoraRTC_N-4.11.0.js' %}"
+></script>
+<script type="text/javascript" src="{% static 'js/streams.js' %}"></script>
 
 {% endblock content %}

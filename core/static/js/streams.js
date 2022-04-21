@@ -11,6 +11,7 @@ let remoteUsers = {};
 
 let joinAndDisplayLocalStream = async () => {
   client.on("user-published", handleUserJoined);
+  client.on("user-left", handleUserLeft);
 
   UID = await client.join(APP_ID, CHANNEL, TOKEN, null);
   localTracks = await AgoraRTC.createMicrophoneAndCameraTracks();
@@ -30,7 +31,6 @@ let joinAndDisplayLocalStream = async () => {
 };
 
 let handleUserJoined = async (user, mediaType) => {
-  console.log('dupa')
   remoteUsers[user.uid] = user;
   await client.subscribe(user, mediaType);
 
@@ -55,5 +55,13 @@ let handleUserJoined = async (user, mediaType) => {
     user.audioTrack.play();
   }
 };
+
+let handleUserLeft = async (user) => {
+
+  document.getElementById(`user-container-${user.uid}`).remove()
+  delete remoteUsers[user.uid]
+
+  //console.log('User left.')
+}
 
 joinAndDisplayLocalStream();
