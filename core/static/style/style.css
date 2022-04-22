@@ -4,7 +4,7 @@
 }
 
 body {
-  background-color: rgba(232, 233, 239, 1);
+  background-color: rgb(214, 80, 118,1);
   font-family: "Roboto", sans-serif;
 }
 
@@ -80,10 +80,14 @@ body {
 }
 
 
-/* ----------------- Room Styling ------------------*/
 #room-name-wrapper{
   text-align: center;
   font-size: 18px;
+  /* border: 3px solid black; */
+  /* border-radius: 5px; */
+}
+#room-name{
+  font-weight: bold;
 }
 
 #video-streams{
@@ -99,7 +103,7 @@ body {
   flex-grow: 1;
   max-height: 100%;
   min-height: 350px;
-  border: 1px solid rgb(75, 93, 172);
+  border: 3px solid black;
   border-radius: 5px;
   margin: 2px;
   background-color: rgba(198,202,219,1);
@@ -144,6 +148,7 @@ body {
   justify-content: center;
   column-gap: 1em;
   position: fixed;
+  margin-top: 10px; 
   bottom: 20px;
 }
 
