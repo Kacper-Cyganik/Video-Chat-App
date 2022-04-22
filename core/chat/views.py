@@ -31,7 +31,7 @@ def lobby(request):
 def room(request):
     return render(request, 'chat/room.html', {})
 
-@csrf_exempt
+# @csrf_exempt
 def create_member(request):
     data = json.loads(request.body)
 
@@ -47,10 +47,8 @@ def get_member(request):
     name = member.name
     return JsonResponse({'name':member.name}, safe=False)
 
-@csrf_exempt
 def delete_member(request):
-    name = request.GET.get('name')
-    uid = request.GET.get('UID')
-    member = RoomMember.objects.get(uid=uid, name=name)
+    data = json.loads(request.body)
+    member = RoomMember.objects.get(name=data['name'], uid=data['UID'], room_name=data['room_name'])
     member.delete()
-    return JsonResponse('Member was deleted', safe=False)
+    return JsonResponse('Member deleted', safe=False)

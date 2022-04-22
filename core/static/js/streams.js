@@ -8,6 +8,21 @@ const client = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" });
 let localTracks = [];
 let remoteUsers = {};
 
+let getCookie = (name)=>{
+  var cookieValue = null;
+  if(document.cookie && document.cookie !== ''){
+    var cookies = document.cookie.split(";");
+    for(var i=0; i<cookies.length; i++){
+      var cookie = cookies[i].trim();
+      if(cookie.substring(0, name.length+1)===(name+'=')){
+        cookieValue = decodeURIComponent(cookie.substring(name.length+1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+
 let joinAndDisplayLocalStream = async () => {
   document.getElementById('room-name').innerText = CHANNEL
   client.on("user-published", handleUserJoined);
@@ -105,11 +120,14 @@ let toggleMicrophone = async (e) => {
   }
 }
 
+var csrftoken = getCookie('csrftoken');
+
 let createMember = async () => {
   let response = await fetch('/create_member/', {
     method:'POST',
     headers:{
       'Content-Type':'application/json',
+      "X-CSRFToken": csrftoken
     },
     body:JSON.stringify({'name':NAME, 'room_name':CHANNEL, 'UID':UID})
   })
@@ -128,6 +146,7 @@ let deleteMember = async (user) => {
     method:'POST',
     headers:{
       'Content-Type':'application/json',
+      "X-CSRFToken": csrftoken,
     },
     body:JSON.stringify({'name':NAME, 'room_name':CHANNEL, 'UID':UID})
   })
