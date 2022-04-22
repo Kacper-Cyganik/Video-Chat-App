@@ -13,6 +13,7 @@ body {
   box-shadow:var(--shaddow);
   background-color: #fff;
   padding: 30px;
+  border:2px solid black;
   border-radius: 5px;
   position: fixed;
   top:50%;
