@@ -2,9 +2,18 @@
 
 
 ##  About
-Video chat application made with [Agora Web SDK](https://docs.agora.io/en/All/API%20Reference/web/index.html) and Django. It uses backend database to store info about room members.
+Video chat application made with [Agora Web SDK](https://docs.agora.io/en/All/API%20Reference/web/index.html) and Django. It uses backend database to store info about room members and [agora token builder](https://pypi.org/project/agora-token-builder/) to generate token server in Python & Agora RTM/RTC.
+<p align="center">
+<img src="pics/screenshot_lobby.png" width="375" height="350">
+<br/>
+Screenshot of lobby - enter room name and your nick 
+<br/>
+<br/>
+<img src="pics/screenshot_room.png">
+<br/>
+Screenshot of room - it allows user to mute its microphone and turn off its camera.
+</p>
 
-It also uses [agora token builder](https://pypi.org/project/agora-token-builder/) to generate token server in Python & Agora RTM/RTC
 
 
 ## How to run
@@ -36,5 +45,5 @@ python3 manage.py runserver
 ```
 
 # To Do
-## - use Redis to store info about users,
-## - add text chat to rooms, 
+ - use Redis to store info about users,
+ - add text chat to rooms, 
